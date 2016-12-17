@@ -1,0 +1,192 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-route.min.js"></script>
+    <script src="js/app.js"></script>
+    <!--<script src="js/controllers.js"></script>-->
+
+    <style>
+    </style>
+
+    <script>
+
+
+    </script>
+
+
+</head>
+<body ng-app="store">
+
+    <div class="component-box">
+        <div class="container">
+            <div class="component-box1 component-shopping borderB5">
+                <div class="page-header heading">
+                    <h1>Your Shopping Bag <small>Subtext for header</small></h1>
+                </div>
+                <div class="component-shopping-header borderB5">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            3 Items
+                        </div>
+                        <div class="col-sm-5">
+                        </div>
+                        <div class="col-sm-1 text-center">
+                            Size
+                        </div>
+                        <div class="col-sm-1 text-center">
+                            Qty
+                        </div>
+                        <div class="col-sm-2 text-right">
+                            Price
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Start: List of Items -->
+                <div class="component-shopping-body borderB5">
+                    <div class="component-shopping-bodyCol" ng-controller="ListController as list">
+                        <div class="row" ng-repeat="item in list.listData">
+                            
+                            <div style="border:1px solid green; overflow:hidden; margin-bottom:12px">
+                                <div class="col-sm-3">
+                                    <img ng-src="assets/T{{item.p_id}}.jpg" alt="Image" />
+                                    <a href="#" data-toggle="modal" data-target="#myModal">Click to open model </a>
+                                </div>
+                                <div class="col-sm-5">
+                                    <h2>{{item.p_name}}</h2>
+                                    <div>Style #: MS13KTI906</div>
+                                    <div>Colour: {{x.p_variation}} </div>
+
+                                    <div class="cart-action">
+                                        <ul class="list-group">
+                                            <li class="list-group-item">Edit</li>
+                                            <li class="list-group-item">X Remove</li>
+                                            <li class="list-group-item">Save For Later</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1 text-center">
+                                    S
+                                </div>
+                                <div class="col-sm-1 text-center">
+                                    <input style="width:60px" type="number" ng-required ng-model="item.p_quantity" class="input-small">
+                                </div>
+                                <div class="col-sm-2 text-right">
+                                    {{item.c_currency}}{{item.p_price * item.p_quantity}}
+                                <br>
+
+                                <!-- {{total() | currency}}-->
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="total">Total Price is {{list.total()}}</div>
+                    </div>
+                </div>
+                <!-- End: List of Items -->
+
+                <!-- Start: Shopping Cart -->
+                <div class="shopping-cart-checkout">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <ul class="list-group shopping-contact">
+                                <li class="list-group-item">Need help
+                                <br>
+                                    or have questions?
+                                </li>
+                                <li class="list-group-item">Call Customer Services at
+                                <br>
+                                    1-800-555-5555
+                                </li>
+                                <li class="list-group-item">Chat with one of our stttylists
+                                </li>
+                                <li class="list-group-item">See return
+                                <br>
+                                    & exchange policy
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="col-sm-8">
+                            <div class="row borderB5">
+                                <div class="col-sm-6">
+                                    <div>ENTER PROMOTION CODE OR GIFT CARD</div>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <!--                           <input class="form-control" type="text" value=""> <button class="btn">APPLY</button>-->
+
+                                    <form class="form-inline">
+                                        <div class="form-group">
+                                            <label for="" class="sr-only">Password</label>
+                                            <input type="text" class="form-control" id="promo" placeholder="Promocode">
+                                        </div>
+                                        <button id="promo-code" type="button" class="btn">APPLY</button>
+                                        <div class="green" style="color: green" id="promocodeAdded"></div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <ul class="list-group shopping-contact">
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-sm-8">SUBTOTAL</div>
+                                        <div class="col-sm-4 text-right"><sup>$</sup>37.00</div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-sm-8">PROMOTION CODE JF 10 APPLIED</div>
+                                        <div class="col-sm-4 text-right">-<sup>$</sup>7.00</div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            ESTIMATED SHIPPING
+                                        <div>
+                                            You qualify for free shipping
+                                            <br>
+                                            because your order is over $50<sup>*</sup>
+                                        </div>
+                                        </div>
+                                        <div class="col-sm-4 text-right"><span>FREE</span></div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item text-right">
+                                    <div class="row">
+                                        <div class="col-sm-8">SUBTOTAL</div>
+                                        <div class="col-sm-4 text-right"><sup>$</sup>30.00</div>
+                                    </div>
+                                </li>
+
+                                <li class="list-group-item text-right">
+                                    <a href="#">CONTINUE SHOPPING</a>
+                                </li>
+
+                                <li class="list-group-item text-right">
+                                    <input class="btn" type="button" value="CONTINUE">
+                                </li>
+
+                                <li class="list-group-item text-right">
+                                    <div>
+                                        <img src="assets/lock.jpg" alt="Secure Lock" />
+                                        Secure checkout. Shopping is always sate $ secure</div>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- End: Shopping Cart -->
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
